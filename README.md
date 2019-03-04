@@ -1,7 +1,7 @@
 # tag-tracking-server
-# Tizzy Macgregor
+Tizzy Macgregor
 
-# Setup
+## Setup
 ```
 cd tag-tracking-server/
 mvn clean install
