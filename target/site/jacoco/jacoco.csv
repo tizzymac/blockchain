@@ -1,0 +1,4 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tag-tracking-server,com.urbanairship.tags,Main,12,30,1,1,1,7,3,1,2,1
+tag-tracking-server,com.urbanairship.tags,PostHandler,127,9,6,0,29,3,6,1,3,1
+tag-tracking-server,com.urbanairship.tags,Users,76,12,7,1,15,4,6,1,2,1

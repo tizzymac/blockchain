@@ -25,16 +25,15 @@ public final class Users {
 
     public void update(String userName, Set<String> add, Set<String> remove) {
 
-        if (users.containsKey(userName)) {
-            // update user's tags
-            users.get(userName).addAll(add);
-            users.get(userName).removeAll(remove);
-
-        } else {
+        if (!users.containsKey(userName)) {
             // add new user
             Set<String> tagSet = add.isEmpty() ? add : new HashSet<>();
             users.put(userName, tagSet);
         }
+
+        // update user's tags
+        users.get(userName).addAll(add);
+        users.get(userName).removeAll(remove);
     }
 
     public String getResponse(String userName) {

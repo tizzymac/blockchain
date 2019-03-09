@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Users.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tag-tracking-server</a> &gt; <a href="index.source.html" class="el_package">com.urbanairship.tags</a> &gt; <span class="el_source">Users.java</span></div><h1>Users.java</h1><pre class="source lang-java linenums">package com.urbanairship.tags;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+public final class Users {
+    private static Users sUsers;
+
+    private static HashMap&lt;String, Set&lt;String&gt;&gt; users; // username, tags
+
+    private Users() {
+    }
+
+    public static Users getInstance() {
+<span class="pc bpc" id="L19" title="1 of 2 branches missed.">        if(sUsers == null) {</span>
+<span class="fc" id="L20">            sUsers = new Users();</span>
+<span class="fc" id="L21">            users = new HashMap&lt;&gt;();</span>
+        }
+<span class="fc" id="L23">        return sUsers;</span>
+    }
+
+    public void update(String userName, Set&lt;String&gt; add, Set&lt;String&gt; remove) {
+
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if (users.containsKey(userName)) {</span>
+            // update user's tags
+<span class="nc" id="L30">            users.get(userName).addAll(add);</span>
+<span class="nc" id="L31">            users.get(userName).removeAll(remove);</span>
+
+        } else {
+            // add new user
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            Set&lt;String&gt; tagSet = add.isEmpty() ? add : new HashSet&lt;&gt;();</span>
+<span class="nc" id="L36">            users.put(userName, tagSet);</span>
+        }
+<span class="nc" id="L38">    }</span>
+
+    public String getResponse(String userName) {
+
+        // get tags
+<span class="nc" id="L43">        JSONArray tags = new JSONArray();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        for (String tag : users.get(userName)) {</span>
+<span class="nc" id="L45">            tags.put(tag);</span>
+<span class="nc" id="L46">        }</span>
+
+<span class="nc" id="L48">        String jsonString = new JSONObject()</span>
+<span class="nc" id="L49">                .put(&quot;user&quot;, userName)</span>
+<span class="nc" id="L50">                .put(&quot;tags&quot;, tags)</span>
+<span class="nc" id="L51">                .toString()</span>
+                + &quot;\n&quot;;
+
+<span class="nc" id="L54">        return jsonString;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
